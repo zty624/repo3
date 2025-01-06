@@ -23,12 +23,17 @@ def E_dynamic2(z, Omega_m=Omega_m, w=-1):
     integral, _ = quad(lambda z_prime: (1 + w) / (1 + z_prime), 0, z)
     return np.sqrt(Omega_m * (1 + z)**3 + (1 - Omega_m) * np.exp(3 * integral))
 
-# def E_dynamic3(z, w0=-1, wa=0):
-#     def integrand(z_prime):
-#         return (1 + w0 + wa * z_prime) / (1 + z_prime)
-#     integral, _ = quad(integrand, 0, z)
-#     return np.exp(-3 * wa * z) * (1 + z)**3 * np.exp(3 * integral)
+def E_dynamic3(z, w0=-1, wa=0):
+    def integrand(z_prime):
+        return (1 + w0 + wa * z_prime / (1 + z_prime)) / (1 + z_prime)
+    integral, _ = quad(integrand, 0, z)
+    return np.sqrt(Omega_m * (1 + z) ** 3 + (1 - Omega_m) * np.exp(3 * integral))
 
+def E_dynamic4(z, w0=-1, wa=0):
+    def integrand(z_prime):
+        return (1 + w0 + wa / (1 + z_prime)) / (1 + z_prime)
+    integral, _ = quad(integrand, 0, z)
+    return np.sqrt(Omega_m * (1 + z) ** 3 + (1 - Omega_m) * np.exp(3 * integral))
 
 # calculations
 def mu(z, E_func, *args):

@@ -30,7 +30,7 @@
 
 ## 2. Different cosmologies
 
-由 Friedmann 方程, $\Omega_m + \Omega_\Lambda + \Omega_r = 1$. 此处，我们假设 $\Omega_r \ll 1$. 宇宙学中光度距离与红移和宇宙膨胀的关系为：
+由 Friedmann 方程, $\Omega_m + \Omega_\Lambda + \Omega_r + \Omega_k = 1$. 此处，我们假设 $\Omega_r \ll 1$. 宇宙学中光度距离与红移和宇宙膨胀的关系为：
 
 $$\frac{d_l(z)}{c(1+z)} = \int_t^{t_0} \frac{dt'}{a(t')} = \int_0^z \frac{dz'}{H(z')}$$
 
@@ -55,7 +55,7 @@ def sinn(x, omega_k):
     return np.sinh(x) if omega_k > 0 else np.sin(x)
 ```
 
-3. $$H(z) = H_0 \sqrt{\Omega_m (1+z')^3 + (1-\Omega_m)\times \exp \left(3 \int_0^{z} \frac{1+w(z')}{1+z'} d z\right)}$$
+3. $$H(z) = H_0 \sqrt{\Omega_m (1+z)^3 + (1-\Omega_m)\times \exp \left(3 \int_0^{z} \frac{1+w(z')}{1+z'} d z\right)}$$
    在此模型下,宇宙学仅由 $w(z),\Omega_M$ 控制.作讨论如下:
     - $w(z)=-1, H(z) = H_0\sqrt{\Omega_m(1+z')^3 + (1 - \Omega_m)}$
     - $w(z) = 0, H(z) = H_0\Omega_m(1+z')^{3/2}$
@@ -66,7 +66,13 @@ def sinn(x, omega_k):
 
 ## 3. Fitting by minimizing the residual chi2
 
-论文给出了卡方数值的计算公式: $$\chi^2(H_0, \Omega_M, w_i) = \sum_i \frac{(\mu_{p,i}(z_i; H_0, \Omega_M, w_i) - \mu_{0,i})^2}{\sigma_{\mu_{0,i}}^2 + \sigma_v^2}$$ 其中 $\sigma_v$ 是由于特殊速度导致的超新星红移的离散度(转换为距离模数单位), $\sigma_{\mu_{0,i}}$ 是单个距离模数的不确定性, $w_i$ 是描述 $w(z)$ 的一组暗能量参数. 此处, 我们需要将 $\sigma_v$ 转换为距离模数的单位: $\mu = 5 \log d_l + 25 \to \Delta \mu = \frac{5}{d_l \ln 10} \Delta d_l = \frac{5}{10^{(\mu_0 - 25) / 5} \ln 10} \frac{\sigma_v}{H_0}$
+论文给出了卡方数值的计算公式: 
+
+$$\chi^2(H_0, \Omega_M, w_i) = \sum_i \frac{(\mu_{p,i}(z_i; H_0, \Omega_M, w_i) - \mu_{0,i})^2}{\sigma_{\mu_{0,i}}^2 + \sigma_v^2}$$ 
+
+其中 $\sigma_v$ 是由于特殊速度导致的超新星红移的离散度(转换为距离模数单位), $\sigma_{\mu_{0,i}}$ 是单个距离模数的不确定性, $w_i$ 是描述 $w(z)$ 的一组暗能量参数. 此处, 我们需要将 $\sigma_v$ 转换为距离模数的单位: 
+
+$$\mu = 5 \log d_l + 25 \to \Delta \mu = \frac{5}{d_l \ln 10} \Delta d_l = \frac{5}{10^{(\mu_0 - 25) / 5} \ln 10} \frac{\sigma_v}{H_0}$$
 
 在下述图片中，如果不加说明，contour 的线条由里到外，分别为 $1\sigma$(red), $2\sigma$(yellow), $3\sigma$(green).
 
@@ -94,15 +100,21 @@ chi2_min = np.min(chi2_LCDM); chi2_68 = 1; chi2_95 = 4; chi2_99 = 9
 
 1. 考虑论文所给的 $\Omega_M, \Omega_\Lambda$ 模型，我们成功复现了论文中的结果。
 
-![fig/chi2_dynamic.png](fig/chi2_dynamic.png)
+    ![fig/chi2_dynamic.png](fig/chi2_dynamic.png)
 
 2. 考虑论文所给的 $w(z)$ 模型, 当我们取 $w(z)$ 为常数的时候，我们成功复现了论文中的卡方虚线结果。但我没有进行进一步的计算以得到 $w(z)$ 的最佳拟合值。
 
-![fig/chi2_dynamic2.png](fig/chi2_dynamic2.png)
+    ![fig/chi2_dynamic2.png](fig/chi2_dynamic2.png)
 
-<!-- ### 3.2 拓展模型 \(w(z) = w_0 + w_a a\)
+    进一步的，我们考虑了 $w(z) = w_0 + w_a z / (1 + z)$ 的情况，准备复现论文中图 9 的 Weak Prior 结果. 在 $w_0$ 上，我们得到的结果和论文中相近，但在 $w_a$ 上，我们的结果和论文中有较大差异。
 
-我们在此处考虑 $w(z) = w_0 + w_a /(1+z)$ 的情况： -->
+    ![fig/chi2_dynamic3.png](fig/chi2_dynamic3.png)
+
+### 3.2 拓展模型 \(w(z) = w_0 + w_a a\)
+
+我们在此处考虑 $w(z) = w_0 + w_a /(1+z)$ 的情况: 
+
+![fig/chi2_dynamic4.png](fig/chi2_dynamic4.png)
 
 ## 参考文献
 https://iopscience.iop.org/article/10.1086/383612/pdf
