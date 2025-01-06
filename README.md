@@ -44,7 +44,7 @@
 
 非常奇怪，我在论文中找到两个不同动力学模型。我们在此做两个模型的分析：
 
-1. 在一个具有质量密度 $\Omega_M$ 和真空能量密度（即宇宙学常数）$\Omega_\Lambda$ 的弗里德曼-罗伯逊-沃尔克（FRW）宇宙学框架中，预期的亮度距离 $d_L$​ 为 $$d_L = cH_0^{-1}(1+z) |\Omega_k|^{-1/2} \text{sinn}\left\{|\Omega_k|^{1/2} \times \int_0^z dz [(1+z)^2(1+\Omega_M z)-z(2+z)\Omega_\Lambda]^{-1/2}\right\}$$其中，$\Omega_k = 1 - \Omega_M - \Omega_\Lambda$,在平坦宇宙下，可以直接忽略 $\Omega_k$的影响。同时， $$\text{sinn}(x) = \begin{cases} \sinh(x) & \text{if } \Omega_k > 0 \\ x & \text{if } \Omega_k = 0 \\ \sin(x) & \text{if } \Omega_k < 0 \end{cases}$$
+1. 在一个具有质量密度 $\Omega_M$ 和真空能量密度（即宇宙学常数）$\Omega_\Lambda$ 的弗里德曼-罗伯逊-沃尔克（FRW）宇宙学框架中，预期的亮度距离 $d_L$​ 为 $$d_L = cH_0^{-1}(1+z) |\Omega_k|^{-1/2} \text{sinn} \{|\Omega_k|^{1/2} \times \int_0^z dz [(1+z)^2(1+\Omega_M z)-z(2+z)\Omega_\Lambda]^{-1/2}\}$$其中，$\Omega_k = 1 - \Omega_M - \Omega_\Lambda$,在平坦宇宙下，可以直接忽略 $\Omega_k$的影响。同时， $$\text{sinn}(x) = \begin{cases} \sinh(x) & \text{if } \Omega_k > 0 \\ x & \text{if } \Omega_k = 0 \\ \sin(x) & \text{if } \Omega_k < 0 \end{cases}$$
 
 2. $$H(z) = H_0 \sqrt{\Omega_m (1+z')^3 + (1-\Omega_m)\times \exp \left(3 \int_0^{z} \frac{1+w(z')}{1+z'} d z\right)}$$在此模型下，宇宙学仅由 $w(z),\Omega_M$ 控制。作讨论如下：
     - $w(z)=-1, H(z) = H_0\sqrt{\Omega_m(1+z')^3 + (1 - \Omega_m)}$
@@ -96,4 +96,5 @@ chi2_min = np.min(chi2_LCDM); chi2_68 = 1; chi2_95 = 4; chi2_99 = 9
 
 ## 参考文献
 https://iopscience.iop.org/article/10.1086/383612/pdf
+
 https://arxiv.org/pdf/astro-ph/0611572.pdf
