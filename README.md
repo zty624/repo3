@@ -10,7 +10,7 @@
 
 ## 1. Distance-redshift scatter plot
 
-论文将观测到的 SN 数据集根据 confidence 分为 GOLD, SILVER 等级别，在此，我们默认将其全部考虑在内。
+论文将观测到的 SN 数据集根据 confidence 分为 GOLD, SILVER 等级别，在此，我们默认将其全部考虑在内。尝试过使用附表中的链接，但是无法打开？所以在此只使用了 arXiv 上的数据。
 
 论文的表 6 中给出了观测星系的红移 $z$, 距离模数 $\mu$, 以及误差等参数, 我们借用了这些数据:
 
